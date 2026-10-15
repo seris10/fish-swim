@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=65"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fish-swim"
+version = "0.1.0"
+readme = "README.md"
+description = "Procedural fish spine rig and illustrative GLB swimming animation"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+preview = ["trimesh>=4", "vtk>=9.2", "Pillow>=9"]
+
+[project.scripts]
+fish-swim = "fish_swim:main"
+fish-swim-preview = "render_preview:main"
+
+[tool.setuptools]
+py-modules = ["fish_swim", "render_preview"]
