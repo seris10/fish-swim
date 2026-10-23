@@ -8,3 +8,7 @@ dist/
 .DS_Store
 *.mp4
 *.glb
+
+!examples/synthetic-fish.glb
+
+!examples/synthetic-fish.glb

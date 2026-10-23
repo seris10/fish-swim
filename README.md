@@ -2,7 +2,7 @@
 
 FishSwim adds a procedural spine, linear-blend skin weights, and three looping animations to an unrigged GLB mesh using Python and NumPy. It writes glTF skins, joint attributes, inverse bind matrices, and quaternion animation channels while preserving the input file.
 
-Work in progress. Swimming presets are illustrative kinematic parameters. They have not been fitted to specimen motion or biologically validated, and they do not predict thrust, swimming speed, or energy use.
+The swimming presets use authored kinematics. They have not been fitted to filmed fish and do not predict thrust, speed or energy use.
 
 ## Installation
 
@@ -19,13 +19,13 @@ On Windows, activate with `.venv\Scripts\activate`.
 ## Run
 
 ```sh
-fish-swim model.glb animated.glb
+fish-swim examples/synthetic-fish.glb animated.glb
 fish-swim model.glb scaled.glb --target-length-m 0.60
 fish-swim model.glb lower-amplitude.glb --amplitude-scale 0.75
 fish-swim model.glb more-joints.glb --bones 19 --wave-onset 0.20 --envelope-exponent 2.2
 ```
 
-The input must be a self-contained GLB with one unrigged mesh, one primitive, and the mesh in node 0. It must have its long axis along Z, snout toward +Z, tail toward -Z, and dorsal direction +Y. Sparse accessors and nonidentity mesh transforms are unsupported. Reorient or apply transforms before rigging. No source mesh is bundled.
+The input must be a self-contained GLB with one unrigged mesh, one primitive, and the mesh in node 0. It must have its long axis along Z, snout toward +Z, tail toward -Z, and dorsal direction +Y. Sparse accessors and nonidentity mesh transforms are unsupported. Reorient or apply transforms before rigging. A generated test mesh is included at `examples/synthetic-fish.glb`. It is a simple shape for testing the rig, not a fish scan.
 
 `--target-length-m` supplies a chosen scene scale; it does not measure the specimen. Without it, the original model units remain unchanged. The input and output must be different files. An existing output file can be replaced.
 
@@ -38,6 +38,8 @@ The input must be a self-contained GLB with one unrigged mesh, one primitive, an
 The centerline is a traveling sine wave with a posterior amplitude envelope. Neighboring centerline points determine bone headings; bone-length constraints and skinning mean actual mesh-tip excursions can differ from the targets. The default spine has 15 joints and keeps the head relatively still. Fins do not have independent articulation.
 
 These presets are not measurements of Yellowstone cutthroat trout. Related background includes [trout kinematics in a vortex street](https://pmc.ncbi.nlm.nih.gov/articles/PMC6324577/) and [a kinematic model of Kármán gaiting](https://pmc.ncbi.nlm.nih.gov/articles/PMC3851150/); the preset values have not been fitted to those studies.
+
+![Procedural swimming on a synthetic mesh](media/cruise.gif)
 
 ## Godot controller
 
